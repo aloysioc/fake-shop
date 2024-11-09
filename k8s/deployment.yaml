@@ -14,16 +14,16 @@ spec:
     spec:
       containers:
         - name: postgre
-          image: postegres:13.16
+          image: postgres:13.16
           ports:
             - containerPort: 5432
           env:
+            - name: POSTGRES_DB
+              value: fakeshop 
             - name: POSTGRES_USER
               value: fakeshop
             - name: POSTGRES_PASSWORD
               value: Pg1234
-            - name: POSTGRES_DB
-              value: fakeshop 
 ---
 apiVersion: v1
 kind: Service
@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
         - name: fakeshop
-          image: aloysioc/fake-shop:v1
+          image: aloysioc/fake-shop:v2
           ports:
             - containerPort: 5000
           env:
